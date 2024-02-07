@@ -11,15 +11,39 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url('background.jpg'); /* Arka plan görseli */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
         }
 
         #container {
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Konteyner arka planı */
+            padding: 20px;
+            border-radius: 10px;
         }
 
         #srtContent {
             width: 231px;
             height: 136px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            font-weight: bold;
         }
     </style>
 </head>
