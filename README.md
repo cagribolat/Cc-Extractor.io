@@ -4,8 +4,6 @@ https://cagribolat.github.io/Cc-Extractor.io/
 <b>Özellikler</b>.</p>
 Yalnızca uygun bölümleri alır ve "forced.srt" olarak dışa aktarır.
 
-<b>Kurulum</b>.</p>
-CCExtractor'ü bilgisayarınıza kurmak için şu adımları izleyin:
 
 CCExtractor GitHub deposunu klonlayın veya ZIP dosyası olarak indirin.
 Gerekli bağımlılıkları kurun ve CCExtractor'ü derleyin.
