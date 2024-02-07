@@ -1,4 +1,4 @@
-# Cc-Extractor.io
+https://cagribolat.github.io/Cc-Extractor.io/
 # CCExtractor
 CCExtractor, yalnızca yüklenen SRT dosyasının içindeki uygun bölümleri alır ve bunları "forced.srt" dosyası olarak dışa aktarır.
 
