@@ -64,14 +64,22 @@
             // Join processed lines back to string
             var processedContent = processedLines.join('\n\n');
 
-            // Save processed content
+            // Create a Blob object from the processed content
             var blob = new Blob([processedContent], {type: 'text/plain'});
+
+            // Create a temporary URL for the Blob object
             var url = URL.createObjectURL(blob);
+
+            // Create a temporary anchor element
             var a = document.createElement('a');
             a.href = url;
-            a.download = 'forced.srt';
+            a.download = 'forced.srt'; // Specify the filename for the downloaded file
             document.body.appendChild(a);
+
+            // Simulate a click on the anchor element to trigger the download
             a.click();
+
+            // Cleanup: remove the anchor element and revoke the temporary URL
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
