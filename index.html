@@ -4,16 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cc Extractor</title>
+    <style>
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        #srtContent {
+            width: 231px;
+            height: 136px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Cc Extractor</h1>
-    <label for="srtFile">Select SRT File:</label>
-    <input type="file" id="srtFile" accept=".srt"><br><br>
+    <div class="centered">
+        <h1>Cc Extractor</h1>
+        <div class="input-container">
+            <label for="srtFile">Select SRT File:</label>
+            <input type="file" id="srtFile" accept=".srt"><br><br>
+        </div>
 
-    <button onclick="processSrt()">Process and Save</button><br><br>
+        <div class="button-container">
+            <button onclick="processSrt()">Process and Save</button><br><br>
+        </div>
 
-    <textarea id="srtContent" rows="10" cols="50" style="width: 231px; height: 136px;"></textarea>
-
+        <textarea id="srtContent" rows="10" cols="50"></textarea><br><br>
+    </div>
 
     <script>
         function processSrt() {
