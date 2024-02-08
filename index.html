@@ -11,7 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('background.jpg'); /* Arka plan görseli */
+            background-image: url('https://images.unsplash.com/photo-1620658839921-293f998260d5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Arka plan görseli */
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
@@ -39,4 +39,93 @@
         }
 
         button:hover {
-            background-color: #45a
+            background-color: #45a049;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Cc Extractor</h1>
+        <label for="srtFile">Select SRT File:</label>
+        <input type="file" id="srtFile" accept=".srt"><br><br>
+        <button onclick="processSrt()">Process and Save</button><br><br>
+        <textarea id="srtContent" rows="10" cols="50"></textarea><br><br>
+    </div>
+
+    <script>
+        function processSrt() {
+            var fileInput = document.getElementById('srtFile');
+            var srtContent = document.getElementById('srtContent');
+
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert('Please select an SRT file.');
+                return;
+            }
+
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(event) {
+                var content = event.target.result;
+                var processedContent = processAndSaveSrt(content, file.name);
+                srtContent.value = processedContent;
+            };
+
+            reader.readAsText(file);
+        }
+
+        function processAndSaveSrt(srtContent, fileName) {
+            var lines = srtContent.split('\n');
+            var processedLines = [];
+
+            var currentText = '';
+            var currentTimecode = '';
+
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i].trim();
+
+                if (line === '') {
+                    continue; // Skip empty lines
+                }
+
+                if (line.match(/^\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}$/)) {
+                    // If the line is a timecode line, update current timecode
+                    currentTimecode = line;
+                } else if (line === line.toUpperCase() && line !== line.toLowerCase()) {
+                    // If the line contains only uppercase letters and is not all lowercase
+                    // Add it to the processed lines along with the current timecode
+                    processedLines.push(currentTimecode + '\n' + line);
+                }
+            }
+
+            // Join processed lines back to string
+            var processedContent = processedLines.join('\n\n');
+
+            // Create a Blob object from the processed content
+            var blob = new Blob([processedContent], {type: 'text/plain'});
+
+            // Create a temporary URL for the Blob object
+            var url = URL.createObjectURL(blob);
+
+            // Create a temporary anchor element
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = fileName.replace('.srt', '_forced.srt'); // Specify the filename for the downloaded file
+            document.body.appendChild(a);
+
+            // Simulate a click on the anchor element to trigger the download
+            a.click();
+
+            // Cleanup: remove the anchor element and revoke the temporary URL
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            return processedContent;
+        }
+    </script>
+</body>
+</html>
