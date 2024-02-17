@@ -4,57 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cc Extractor</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url('https://images.unsplash.com/photo-1620658839921-293f998260d5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Arka plan görseli */
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
-        }
-
-        #container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Konteyner arka planı */
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        #srtContent {
-            width: 231px;
-            height: 136px;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        label {
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
-    <div id="container">
-        <h1>Cc Extractor</h1>
-        <label for="srtFile">Select SRT File:</label>
-        <input type="file" id="srtFile" accept=".srt"><br><br>
-        <button onclick="processSrt()">Process and Save</button><br><br>
-        <textarea id="srtContent" rows="10" cols="50"></textarea><br><br>
-    </div>
+    <h1>Cc Extractor</h1>
+    <label for="srtFile">Select SRT File:</label>
+    <input type="file" id="srtFile" accept=".srt"><br><br>
+
+    <button onclick="processSrt()">Process and Save</button><br><br>
+
+    <textarea id="srtContent" rows="10" cols="50" style="width: 231px; height: 136px;"></textarea>
+
 
     <script>
         function processSrt() {
@@ -71,14 +30,19 @@
 
             reader.onload = function(event) {
                 var content = event.target.result;
-                var processedContent = processAndSaveSrt(content, file.name);
+
+                // Dosyanın karakter kodlamasını belirle
+                var decoder = new TextDecoder('ISO-8859-9'); // ISO-8859-9 (Latin-5) Türkçe karakterler için kullanılıyor
+                var decodedContent = decoder.decode(content);
+
+                var processedContent = processAndSaveSrt(decodedContent);
                 srtContent.value = processedContent;
             };
 
-            reader.readAsText(file);
+            reader.readAsArrayBuffer(file);
         }
 
-        function processAndSaveSrt(srtContent, fileName) {
+        function processAndSaveSrt(srtContent) {
             var lines = srtContent.split('\n');
             var processedLines = [];
 
@@ -105,22 +69,14 @@
             // Join processed lines back to string
             var processedContent = processedLines.join('\n\n');
 
-            // Create a Blob object from the processed content
+            // Save processed content
             var blob = new Blob([processedContent], {type: 'text/plain'});
-
-            // Create a temporary URL for the Blob object
             var url = URL.createObjectURL(blob);
-
-            // Create a temporary anchor element
             var a = document.createElement('a');
             a.href = url;
-            a.download = fileName.replace('.srt', '_forced.srt'); // Specify the filename for the downloaded file
+            a.download = 'forced.srt';
             document.body.appendChild(a);
-
-            // Simulate a click on the anchor element to trigger the download
             a.click();
-
-            // Cleanup: remove the anchor element and revoke the temporary URL
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
