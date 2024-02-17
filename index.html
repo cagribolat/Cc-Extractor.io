@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,9 +30,7 @@
 
             reader.onload = function(event) {
                 var content = event.target.result;
-
-                // Dosyanın karakter kodlamasını belirle
-                var decoder = new TextDecoder('ISO-8859-9'); // ISO-8859-9 (Latin-5) Türkçe karakterler için kullanılıyor
+                var decoder = new TextDecoder('ISO-8859-9');
                 var decodedContent = decoder.decode(content);
 
                 var processedContent = processAndSaveSrt(decodedContent);
