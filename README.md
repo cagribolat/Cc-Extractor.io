@@ -2,7 +2,7 @@ https://cagribolat.github.io/Cc-Extractor.io/
 # CCExtractor
 
 <b>Özellikler</b>.</p>
-Yalnızca uygun bölümleri alır ve "forced.srt" olarak dışa aktarır.
+Yalnızca uygun bölümleri alır ve var olan dosya adı+forced.srt olarak dışa aktarır.
 
 
 CCExtractor GitHub deposunu klonlayın veya ZIP dosyası olarak indirin.
