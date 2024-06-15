@@ -19,18 +19,11 @@ ________________________________________________________________________________
 <b>English</b></p>
 <b>Features</b></p>
 
-CCExtractor only takes the appropriate sections from the uploaded SRT file and exports them as "forced.srt" file.
+Features.
 
-Extracts only the appropriate sections and exports them as "forced.srt".
+Imports only the appropriate sections and exports them as existing filename+forced.srt.
+Clone the CCExtractor GitHub repository or download it as a ZIP file. Install the required dependencies and compile CCExtractor. Now you can start using CCExtractor!
 
-<b>Installation</b>.</p>
-To install CCExtractor on your computer, follow these steps:
+Contribute
 
-Clone the CCExtractor GitHub repository or download it as a ZIP file.
-Install the necessary dependencies and compile CCExtractor.
-You can now start using CCExtractor!
-Usage
-To export only the appropriate sections using CCExtractor, you can use the following command in the terminal or command prompt:
-
-<b>Contributing</b>.</p>
-If you would like to contribute to the development of CCExtractor, please visit the GitHub repository and report any features you would like to contribute or any bugs you have encountered.
+If you would like to contribute to CCExtractor development, please visit the GitHub repository and report any features or bugs you would like to contribute.
