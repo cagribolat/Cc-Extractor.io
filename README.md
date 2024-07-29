@@ -1,13 +1,10 @@
-
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/470ccadf-b97d-4b9f-8d5d-6bc04d46e6c9" alt="cc" />
   <br>
-  <strong>Cc-Extractor</strong>
-</p>
-
-
-
+  <strong>Cc-ExtractorSelection</strong>
+ <br>
+  <p align="center">
+ https://cagribolat.github.io/Cc-ExtractorSelection.io/ <br>
 
 
 
